@@ -38,28 +38,28 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 - NCBI also allows to download information/annotation about these viruses from their web site. This information has been provided as [**Complete_Sequence_info.csv**](https://docs.google.com/spreadsheets/d/1qN_ZcPDPZnJZXDdutjpTlUt8QY9K4VCQvmHdnHZU_j8/edit?usp=sharing).
 
 ### Align the unmapped fastq files to the viral reference
-  - 	In this tutorial, we use alignment tool Bowtie2.
-  -	Install Bowtie2 pre-compiled binary file based on instructions in this manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#obtaining-bowtie-2 
-  -	Alignment generates output in the form of a SAM file. This SAM file contains the reads from various viruses aligned to the viral reference.
-  -	Convert SAM to BAM using Samtools
-  -	Sort the BAM file coordinate wise
-  -	Use `Samtools idx” tool`. This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. 
+- 	In this tutorial, we use alignment tool Bowtie2.
+-	Install Bowtie2 pre-compiled binary file based on instructions in this manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#obtaining-bowtie-2 
+-	Alignment generates output in the form of a SAM file. This SAM file contains the reads from various viruses aligned to the viral reference.
+-	Convert SAM to BAM using Samtools
+-	Sort the BAM file coordinate wise
+-	Use `Samtools idx` tool. This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. 
 
-  	We have provided a small shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/file/d/0B3-  883ME4sP3RGI3SF9ha0p4QVk/view?usp=sharing) that encompasses all of these above steps. 
+  We have provided a small shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/file/d/0B3-  883ME4sP3RGI3SF9ha0p4QVk/view?usp=sharing) that encompasses all of these above steps. 
 
-	*The complete archive of the input files, intermediate files, script, and output files from this Bowtie2 alignment step is 	available through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3NUVrNEtHSndWek0?usp=sharing).*
+ *The complete archive of the input files, intermediate files, script, and output files from this Bowtie2 alignment step is 	available through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3NUVrNEtHSndWek0?usp=sharing).*
 
--	Get genome level matrix file
-  -	If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
-  -	We have provided an Rmarkdown file that has code and output for how to merge all the `Samtools idx` files. See files [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf) created from [**merge.idx.stats.Rmd**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.Rmd) available in this github repository. This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
-  -	The genome level counts from the above step will help us determine the top virus genomes to use for the next step (Gene and CDS quantitation). We use a cutoff genome level count to shortlist the viruses. 
-  -  	For this tutorial, we decided to use a threshold genome level count of 100. So all viral genomes that have “genome level count” >= 100 are short listed. This gives us 43 viral genomes used in the next step. This file is available **[here]**(https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing)
-  -	For this tutorial, we only use one sample, so finding the top viruses was easy. 
+### Get genome level matrix file and find top viruses
+- If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
+-	We have provided an Rmarkdown file that has code and output for how to merge all the `Samtools idx` files. See files [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf) created from [**merge.idx.stats.Rmd**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.Rmd) available in this github repository. This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
+-	The genome level counts from the above step will help us determine the top virus genomes to use for the next step (Gene and CDS quantitation). We use a cutoff genome level count to shortlist the viruses. 
+-  	For this tutorial, we decided to use a threshold genome level count of 100. So all viral genomes that have “genome level count” >= 100 are short listed. This gives us 43 viral genomes used in the next step. This file is available **[here]**(https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing)
+-	For this tutorial, we only use one sample, so finding the top viruses was easy. 
   	
-	*Note: If you have multiple samples belonging to case and control sub-groups, we recommend:
-	-	averaging the genome level counts in each in each sub-group, 
-	-	Find the top viruses in each sub-group
-	We plan to provide code for this in our Bioconductor package under preparation.*
+ *Note: If you have multiple samples belonging to case and control sub-groups, we recommend:
+  -	averaging the genome level counts in each in each sub-group, 
+  -	Find the top viruses in each sub-group
+  We plan to provide code for this in our Bioconductor package under preparation.*
 
 ### Gene and CDS quantification
 -	In this step, we use our in-house pipeline to generate gene and CDS counts is for every input BAM file.
