@@ -37,7 +37,8 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
   
 - NCBI also allows to download information/annotation about these viruses from their web site. This information has been provided as [**Complete_Sequence_info.csv**](https://docs.google.com/spreadsheets/d/1qN_ZcPDPZnJZXDdutjpTlUt8QY9K4VCQvmHdnHZU_j8/edit?usp=sharing).
 
-- Align these unmapped fastq files to the viral reference. In this tutorial, we use alignment tool Bowtie2.
+### Align the unmapped fastq files to the viral reference
+  - 	In this tutorial, we use alignment tool Bowtie2.
   -	Install Bowtie2 pre-compiled binary file based on instructions in this manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#obtaining-bowtie-2 
   -	Alignment generates output in the form of a SAM file. This SAM file contains the reads from various viruses aligned to the viral reference.
   -	Convert SAM to BAM using Samtools
