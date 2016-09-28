@@ -53,10 +53,9 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 - If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
 -	We have provided an Rmarkdown file that has code and output for how to merge all the `Samtools idx` files. See files [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf) created from [**merge.idx.stats.Rmd**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.Rmd) available in this github repository. This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
 -	The genome level counts from the above step will help us determine the top virus genomes to use for the next step (Gene and CDS quantitation). We use a cutoff genome level count to shortlist the viruses. 
--  	For this tutorial, we decided to use a threshold genome level count of 100. So all viral genomes that have “genome level count” >= 100 are short listed. This gives us 43 viral genomes used in the next step. This file is available **[here]**(https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing)
--	For this tutorial, we only use one sample, so finding the top viruses was easy. 
+-  	For this tutorial, we decided to use a threshold genome level count of 100. So all viral genomes that have “genome level count” >= 100 are short listed. This gives us 43 viral genomes used in the next step. This file is available [**here**](https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing). For this tutorial, we only use one sample, so finding the top viruses was easy. 
   	
- *Note: If you have multiple samples belonging to case and control sub-groups, we recommend:
+   *Note: If you have multiple samples belonging to case and control sub-groups, we recommend:
   -	averaging the genome level counts in each in each sub-group, 
   -	Find the top viruses in each sub-group
   We plan to provide code for this in our Bioconductor package under preparation.*
