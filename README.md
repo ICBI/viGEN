@@ -3,6 +3,6 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 
 ##Steps in general
 ![image.workflow]
-
+(https://github.com/ICBI/viGEN/workflow.png)
 ##Steps in detail
 
