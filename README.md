@@ -64,22 +64,53 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 -	In this step, we use our in-house pipeline to generate gene and CDS counts is for every input BAM file.
 -	The region level information is extracted from Gene Feature Format files (GFF) files which are available for most viral genomes from NCBI.
 -	Download GFF files for the top viruses. 
-  -	For this tutorial, we have provided the GFF files in folder [**un_bowtie_topGff**](**XXXXXXXXXXXXXX**) through google drive. *We plan to provide code that does automatic download of GFF files from NCBI FTP site in our Bioconductor package.*
-  -	*Note: Not all fasta files will have GFF files. In this tutorial, out of 43 top viruses, we obtained GFF files for 40 viruses.*
+  -	For this tutorial, we have provided the GFF files in folder [**un_bowtie_topGff**](**https://drive.google.com/drive/folders/0B3-883ME4sP3RXp4eDlTZl9wZkE?usp=sharing**) through google drive. *We plan to provide code that does automatic download of GFF files from NCBI FTP site in our Bioconductor package.Note: Not all fasta files will have GFF files. In this tutorial, out of 43 top viruses, we obtained GFF files for 40 viruses.*
   - 	Input to our in-house pipeline for Gene & CDS quantification: the viral bam files (the BAM file output from previous Bowtie2 step)
-  -	We have provided R markdown file **count.regions.in.regions.Rmd**XXXXXXXXXXXX in this github repository, that generates these Gene and CDS counts. *We plan to integrate this code into our Bioconductor package.*
+  -	We have provided R markdown file [**count.regions.in.regions.Rmd**](https://github.com/ICBI/viGEN/blob/master/count.reads.in.regions.Rmd) in this github repository, that generates these Gene and CDS counts. *We plan to integrate this code into our Bioconductor package.*
   -	Output : 
     -	This code produces counts for each region in the GFF file. One file is created for each virus (GFF file) for each sample. Three types of counts are calculated - “in region”, “on boundary” and “in gaps”. This output is available as a “.csv” file and “Rdata” files.
-    -	Collate all read counts across all samples and across all top viruses to create a matrix. This code (provided as collate.output.files.Rmd) calculates total of “in region” and “on boundary” (referred to as “sum”) when collating.
-    -	Add virus annotation using information from “Complete_Sequence_info.csv” file.
+    -	Collate all read counts across all samples and across all top viruses to create a matrix. This code is provided as [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). It calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
     
-    A complete archive of the input, intermediate and output files from this step are available in google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3bFE0WEZWYjgweGM?usp=sharing)
-
+       <span style="color:red"> A complete archive of the input, intermediate and output files from this step are available in google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3bFE0WEZWYjgweGM?usp=sharing). </span>
+  
+    -	Application: These gene and CDS count files can be used to compare case and control groups of interest using popular tools like EdgeR (http://bioconductor.org/packages/edgeR/) or DESeq2 in Bioconductor that can accept raw counts. 
+    
   The viruses that have the highest region counts are shown in table below. You can see various gene/CDS regions of Hepatitis B virus showing up on top with highest counts. This is a verification of the HBV status of the sample
   
-  XXXXXXXXX insert table XXXXXXXXX 
+  
+| Region Name                            | SRR1946637 | ncId        | annot.name                       |
+|----------------------------------------|------------|-------------|----------------------------------|
+| NC_003977.1_region_1_3215              | 96329      | NC_003977.1 | Hepatitis B virus                |
+| NC_018464.1_region_1_927               | 82509      | NC_018464.1 | Shamonda virus                   |
+| NC_018476.1_region_1_6895              | 49784      | NC_018476.1 | Simbu virus                      |
+| NC_003977.1_gene_1374_1838             | 43011      | NC_003977.1 | Hepatitis B virus                |
+| NC_003977.1_CDS_1374_1838              | 43011      | NC_003977.1 | Hepatitis B virus                |
+| NC_009823.1_region_1_9711              | 31470      | NC_009823.1 | Hepatitis C virus genotype 2     |
+| NC_003977.1_CDS_155_835                | 21591      | NC_003977.1 | Hepatitis B virus                |
+| NC_004102.1_region_1_9646              | 17922      | NC_004102.1 | Hepatitis C virus                |
+| NC_004102.1_three_prime_UTR_9378_9646  | 17922      | NC_004102.1 | Hepatitis C virus                |
+| NC_001672.1_region_1_11141             | 16336      | NC_001672.1 | Tick-borne encephalitis virus    |
+| NC_018711.1_region_1_7195              | 14251      | NC_018711.1 | Lunk virus NKS-1                 |
+| NC_018478.1_region_1_4417              | 13745      | NC_018478.1 | Simbu virus                      |
+| NC_015521.1_region_1_7310              | 10122      | NC_015521.1 | Cutthroat trout virus            |
+| NC_015521.1_three_prime_UTR_7191_7310  | 10122      | NC_015521.1 | Cutthroat trout virus            |
+| NC_022518.1_region_1_9472              | 9028       | NC_022518.1 | Human endogenous retrovirus K113 |
+| NC_009827.1_region_1_9628              | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
+| NC_009827.1_three_prime_UTR_9400_9628  | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
+| NC_009827.1_region_9433_9495           | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
+| NC_001798.1_region_1_154746            | 6388       | NC_001798.1 | NA                               |
+| NC_018382.1_region_1_6796              | 6232       | NC_018382.1 | Bat hepevirus                    |
+| NC_018382.1_three_prime_UTR_6691_6796  | 6232       | NC_018382.1 | Bat hepevirus                    |
+| NC_003977.1_gene_1814_2452             | 5980       | NC_003977.1 | Hepatitis B virus                |
+| NC_003977.1_CDS_1814_2452              | 5980       | NC_003977.1 | Hepatitis B virus                |
+| NC_003977.1_gene_2307_4838             | 5327       | NC_003977.1 | Hepatitis B virus                |
+| NC_003977.1_CDS_2307_4838              | 5327       | NC_003977.1 | Hepatitis B virus                |
+| NC_002645.1_region_1_27317             | 5080       | NC_002645.1 | Human coronavirus 229E           |
+| NC_003977.1_CDS_1901_2452              | 4776       | NC_003977.1 | Hepatitis B virus                |
+| NC_022518.1_long_terminal_repeat_1_968 | 4558       | NC_022518.1 | Human endogenous retrovirus K113 |
+| NC_003977.1_gene_2848_4050             | 3876       | NC_003977.1 | Hepatitis B virus                |
+| NC_003977.1_CDS_2848_4050              | 3876       | NC_003977.1 | Hepatitis B virus                |
 
-    -	Application: These gene and CDS count files can be used to compare case and control groups of interest using popular tools like EdgeR (http://bioconductor.org/packages/edgeR/) or DESeq2 in Bioconductor that can accept raw counts. 
     
 ### Variant calling
 - Install Varscan2 from here: https://sourceforge.net/projects/varscan/files/ 
