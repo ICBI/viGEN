@@ -25,7 +25,8 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
     
 - Once RSEM is installed, and the transcriptome reference is ready, run alignment using RSEM on SRA fastq files using following command: `./rsem-calculate-expression --paired-end -p 8 --output-genome-bam --keep-intermediate-files --bowtie-path /Users/username/Documents/software/bowtie/bowtie-1.1.2 --append-names --estimate-rspd --time input/SRR1946637_1.fastq input/SRR1946637_2.fastq Rsem_ref_hg19/Rsem_ref_hg19 output/SRR1946637`
 
-   Output files: In addition to the aligned BAM file (genome level and transcriptome level), this will generate the unaligned (unmapped) fastq files named **SRR1946637_un_1.fq** and **SRR1946637_un_2.fq**. They consist of the reads that did not align to the human reference. *You can see an archive of the RSEM output files [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3QlpDS0d1UlJKdTg?usp=sharing).*
+   Output files: In addition to the aligned BAM file (genome level and transcriptome level), this will generate the unaligned (unmapped) fastq files named **SRR1946637_un_1.fq** and **SRR1946637_un_2.fq**. They consist of the reads that did not align to the human reference. 
+   `<span style="color:red"> You can see an archive of the RSEM output files [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3QlpDS0d1UlJKdTg?usp=sharing).</span>`
   
   This workflow is part of “Module 1 (filtered human input files)” in Figure 1 in the viGEN manuscript (currently under preparation).
   
@@ -33,7 +34,7 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 - We were interested in exploring all viruses existing in humans. So we first obtained reference genomes of all known and sequenced human viruses obtained from NCBI (as of Sep 2015), and merged them into one file (referred to as the ‘viral reference file’) in fasta file format.Merge all virus fasta file into one big fasta file called **viruses.fa**. For this tutorial, we have provided this file through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
 - We have also indexed the viral reference file, so that these files are ready for alignment tools Bowtie2 (folder name: **virus.bowtie2.refB**) or BWA (folder name: **viral.bwa.ref**) through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
   
-  In case user is interested in creating a reference index the reference file on their own, this is the command to use: `./bowtie2-build /PathToLocation/viruses.fa virus.bowtie2.refB`
+  In case user is interested in creating a reference index the reference file on their own, this is the command to use: `./bowtie2-build /Path/viruses.fa virus.bowtie2.refB`
   
 - NCBI also allows to download information/annotation about these viruses from their web site. This information has been provided as [**Complete_Sequence_info.csv**](https://docs.google.com/spreadsheets/d/1qN_ZcPDPZnJZXDdutjpTlUt8QY9K4VCQvmHdnHZU_j8/edit?usp=sharing).
 
@@ -47,7 +48,7 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 
   We have provided a small shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/file/d/0B3-  883ME4sP3RGI3SF9ha0p4QVk/view?usp=sharing) that encompasses all of these above steps. 
 
- *The complete archive of the input files, intermediate files, script, and output files from this Bowtie2 alignment step is 	available through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3NUVrNEtHSndWek0?usp=sharing).*
+ `<span style="color:red"> The complete archive of the input files, intermediate files, script, and output files from this Bowtie2 alignment step is available through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3NUVrNEtHSndWek0?usp=sharing). </span>`
 
 ### Get genome level matrix file and find top viruses
 - If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
@@ -71,7 +72,7 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
     -	This code produces counts for each region in the GFF file. One file is created for each virus (GFF file) for each sample. Three types of counts are calculated - “in region”, “on boundary” and “in gaps”. This output is available as a “.csv” file and “Rdata” files.
     -	Collate all read counts across all samples and across all top viruses to create a matrix. This code is provided as [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). It calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
     
-       <span style="color:red"> A complete archive of the input, intermediate and output files from this step are available in google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3bFE0WEZWYjgweGM?usp=sharing). </span>
+       `<span style="color:red"> A complete archive of the input, intermediate and output files from this step are available in google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3bFE0WEZWYjgweGM?usp=sharing). </span>`
   
     -	Application: These gene and CDS count files can be used to compare case and control groups of interest using popular tools like EdgeR (http://bioconductor.org/packages/edgeR/) or DESeq2 in Bioconductor that can accept raw counts. 
     
@@ -117,7 +118,7 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 - Run Varscan2 on command line using the following command: `samtools mpileup -B -f /Users/ls483/Documents/SRA.GEO/viral.reference/viruses.fa -d 9999 -Q 17 -q 17 SRR1946637_un.bowtie2.sorted.bam| java -Xmx2g -jar /Users/ls483/Documents/software/varscan2/VarScan.v2.3.9.jar mpileup2cns --output-vcf 1 --min-var-freq 0.01 | awk '/^#/ || $7=="PASS"' > /Users/ls483/Documents/SRA.GEO/output_varscan2/SRR1946637_un.vcf`
 - This produces a the variants found in viruses in a standard variant call file (VCF) file format.
 
-* A complete summary of the input, and output files from this step is available via google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3d0JOVm9qVDBKcnM?usp=sharing).
+ `<span style="color:red"> A complete summary of the input, and output files from this step is available via google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3d0JOVm9qVDBKcnM?usp=sharing).</span>`
   
 ## Citation
 * NCBI SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878
