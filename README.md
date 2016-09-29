@@ -118,7 +118,7 @@ A bioinformatics pipeline for the detection and quantification of viral RNA in h
 - Run Varscan2 on command line using the following command: `samtools mpileup -B -f /Users/ls483/Documents/SRA.GEO/viral.reference/viruses.fa -d 9999 -Q 17 -q 17 SRR1946637_un.bowtie2.sorted.bam| java -Xmx2g -jar /Users/ls483/Documents/software/varscan2/VarScan.v2.3.9.jar mpileup2cns --output-vcf 1 --min-var-freq 0.01 | awk '/^#/ || $7=="PASS"' > /Users/ls483/Documents/SRA.GEO/output_varscan2/SRR1946637_un.vcf`
 - This produces a the variants found in viruses in a standard variant call file (VCF) file format.
 
- * A complete summary of the input, and output files from this step is available via google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3d0JOVm9qVDBKcnM?usp=sharing).*
+ *A complete summary of the input, and output files from this step is available via google drive [**here** ](https://drive.google.com/drive/folders/0B3-883ME4sP3d0JOVm9qVDBKcnM?usp=sharing).*
   
 ## Citation
 * NCBI SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878
