@@ -41,12 +41,12 @@ viGEN is a bioinformatics pipeline for the detection and quantification of viral
 ### Align the unmapped fastq files to the viral reference
 - 	In this tutorial, we use alignment tool Bowtie2.
 -	Install Bowtie2 pre-compiled binary file based on instructions in this manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#obtaining-bowtie-2 
--	Alignment generates output in the form of a SAM file. This SAM file contains the reads from various viruses aligned to the viral reference.
+-	Perform alignment to generate output in the form of a SAM file. This SAM file contains the reads from various viruses aligned to the viral reference.
 -	Convert SAM to BAM using Samtools
 -	Sort the BAM file coordinate wise
 -	Use `Samtools idx` tool. This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. 
 
-  We have provided a small shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/file/d/0B3-  883ME4sP3RGI3SF9ha0p4QVk/view?usp=sharing) that encompasses all of these above steps. 
+  We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/file/d/0B3-  883ME4sP3RGI3SF9ha0p4QVk/view?usp=sharing) that encompasses all of these above steps. 
 
  *The complete archive of the input files, intermediate files, script, and output files from this Bowtie2 alignment step is available through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3NUVrNEtHSndWek0?usp=sharing).*
 
