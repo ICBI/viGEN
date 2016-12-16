@@ -1,5 +1,5 @@
 # viGEN tutorial
-viGEN is a bioinformatics pipeline for the detection and quantification of viral RNA in human NGS data. In this tutorial, we provide and end to end workflow on how this pipeline can be used on an example data file.
+viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS data. In this tutorial, we provide and end to end workflow on how this pipeline can be used on an example data file.
 
 ## Steps in general
 ![Image](https://github.com/ICBI/viGEN/blob/master/workflow.png)
