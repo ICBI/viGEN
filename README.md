@@ -121,7 +121,8 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
  *A complete summary of the input, and output files from this step is available via google drive [**here** ](https://drive.google.com/drive/folders/0B3-883ME4sP3d0JOVm9qVDBKcnM?usp=sharing).*
   
 ## Citation
-* Please cite our work submitted to BioxRiv (http://www.biorxiv.org/content/early/2017/01/11/099788). DOI https://doi.org/10.1101/099788
+Please cite our work submitted to BioxRiv (http://www.biorxiv.org/content/early/2017/01/11/099788). DOI https://doi.org/10.1101/099788. Our manuscript is currently under preparation.
+
 If you are using these samples for testing this pipeline, please remember to cite this dataset from NCBI
 * NCBI SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878
 * EBI SRA http://www.ebi.ac.uk/ena/data/view/SRR1946637
