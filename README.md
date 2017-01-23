@@ -46,7 +46,7 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 -	Sort the BAM file coordinate wise
 -	Use `Samtools idx` tool. This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. 
 
-  We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/file/d/0B3-  883ME4sP3RGI3SF9ha0p4QVk/view?usp=sharing) that encompasses all of these above steps. 
+  We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/open?id=0B3-883ME4sP3RGI3SF9ha0p4QVk) that encompasses all of these above steps. 
 
  *The complete archive of the input files, intermediate files, script, and output files from this Bowtie2 alignment step is available through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3NUVrNEtHSndWek0?usp=sharing).*
 
