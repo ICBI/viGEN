@@ -66,7 +66,7 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 -	The region level information is extracted from Gene Feature Format files (GFF) files which are available for most viral genomes from NCBI.
 -	Download GFF files for the top viruses. 
   -	For this tutorial, we have provided the GFF files in folder [**un_bowtie_topGff**](**https://drive.google.com/drive/folders/0B3-883ME4sP3RXp4eDlTZl9wZkE?usp=sharing**) through google drive. *We plan to provide code that does automatic download of GFF files from NCBI FTP site in our Bioconductor package.Note: Not all fasta files will have GFF files. In this tutorial, out of 43 top viruses, we obtained GFF files for 40 viruses.*
-  - 	Input to our in-house pipeline for Gene & CDS quantification: the viral bam files (the BAM file output from previous Bowtie2 step)
+  -	Input to our in-house pipeline for Gene & CDS quantification: the viral bam files (the BAM file output from previous Bowtie2 step)
   -	We have provided R markdown file [**count.regions.in.regions.Rmd**](https://github.com/ICBI/viGEN/blob/master/count.reads.in.regions.Rmd) in this github repository, that generates these Gene and CDS counts. *We plan to integrate this code into our Bioconductor package.*
   -	Output : 
     -	This code produces counts for each region in the GFF file. One file is created for each virus (GFF file) for each sample. Three types of counts are calculated - “in region”, “on boundary” and “in gaps”. This output is available as a “.csv” file and “Rdata” files.
