@@ -10,6 +10,8 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 * About the dataset: Data consists of Liver cancer patients in China. The authors look for HBV-human integration sites in the dataset of 50 Liver cancer patients in China and 5 adjacent normal tissues. We downloaded the raw reads for one sample SRR1946637 and unzipped them. This sample is from an adjacent normal liver tissue. 
 
 ## Workflow steps in detail
+*A complete summary of the input, and output files from each step in this workflow is available via google drive [**here** ](https://drive.google.com/drive/folders/0B3-883ME4sP3Q3V4RVloa2tSTkE).*
+
 ### Alignment to human reference
 - In this tutorial, we use tool RSEM for alignment
 - Install RSEM as shown in https://github.com/bli25ucb/RSEM_tutorial 
