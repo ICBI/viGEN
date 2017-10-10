@@ -28,8 +28,6 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 
    Output files: In addition to the aligned BAM file (genome level and transcriptome level), this will generate the unaligned (unmapped) fastq files named **SRR1946637_un_1.fq** and **SRR1946637_un_2.fq**. They consist of the reads that did not align to the human reference. 
    
-  *The complete archive of the RSEM output files are available [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3QlpDS0d1UlJKdTg?usp=sharing)*
-   
   This workflow is part of “Module 1 (filtered human input files)” in Figure 1 in the viGEN manuscript (currently under preparation).
   
 ### Create viral reference
@@ -46,23 +44,18 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 -	Perform alignment to generate output in the form of a SAM file. This SAM file contains the reads from various viruses aligned to the viral reference.
 -	Convert SAM to BAM using Samtools
 -	Sort the BAM file coordinate wise
--	Use `Samtools idx` tool. This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. 
+-	Use `Samtools idx` tool. This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. Using the genome level counts, we estimated the number of reads that covered the genome, a form of viral load or viral copy number. Viral copy number was defined as:
+```the Number of mapped reads * Read Length / Genome Length```
+Only those viral species with copy number more than a threshold are selected for the next module.
 
   We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/open?id=0B3-883ME4sP3RGI3SF9ha0p4QVk) that encompasses all of these above steps. 
 
- *The complete archive of the input files, intermediate files, script, and output files from this Bowtie2 alignment step is available through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3NUVrNEtHSndWek0?usp=sharing).*
-
 ### Get genome level matrix file and find top viruses
+
 - If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
 -	We have provided an Rmarkdown file that has code and output for how to merge all the `Samtools idx` files. See files [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf) created from [**merge.idx.stats.Rmd**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.Rmd) available in this github repository. This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
--	The genome level counts from the above step will help us determine the top virus genomes to use for the next step (Gene and CDS quantitation). We use a cutoff genome level count to shortlist the viruses. 
--  	For this tutorial, we decided to use a threshold genome level count of 100. So all viral genomes that have “genome level count” >= 100 are short listed. This gives us 43 viral genomes used in the next step. This file is available [**here**](https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing). For this tutorial, we only use one sample, so finding the top viruses was easy. 
+-	Only those viral species with copy number more than a threshold are selected for the next module. For this tutorial, we decided to use a threshold copy number of 10, so this gives us 19 viral genomes used in the next step. This file is available [**here**](https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing). 
   	
-   *Note: If you have multiple samples belonging to case and control sub-groups, we recommend:
-  -	averaging the genome level counts in each in each sub-group, 
-  -	Find the top viruses in each sub-group
-  We plan to provide code for this in our Bioconductor package under preparation.*
-
 ### Gene and CDS quantification
 -	In this step, we use our in-house pipeline to generate gene and CDS counts is for every input BAM file.
 -	The region level information is extracted from Gene Feature Format files (GFF) files which are available for most viral genomes from NCBI.
@@ -73,9 +66,7 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
   -	Output : 
     -	This code produces counts for each region in the GFF file. One file is created for each virus (GFF file) for each sample. Three types of counts are calculated - “in region”, “on boundary” and “in gaps”. This output is available as a “.csv” file and “Rdata” files.
     -	Collate all read counts across all samples and across all top viruses to create a matrix. This code is provided as [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). It calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
-    
-       *A complete archive of the input, intermediate and output files from this step are available in google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3bFE0WEZWYjgweGM?usp=sharing).*
-  
+     
     -	Application: These gene and CDS count files can be used to compare case and control groups of interest using popular tools like EdgeR (http://bioconductor.org/packages/edgeR/) or DESeq2 in Bioconductor that can accept raw counts. 
     
   The viruses that have the highest region counts are shown in table below. You can see various gene/CDS regions of Hepatitis B virus showing up on top with highest counts. This is a verification of the HBV status of the sample
@@ -101,9 +92,6 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 | NC_009827.1_region_1_9628              | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
 | NC_009827.1_three_prime_UTR_9400_9628  | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
 | NC_009827.1_region_9433_9495           | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
-| NC_001798.1_region_1_154746            | 6388       | NC_001798.1 | NA                               |
-| NC_018382.1_region_1_6796              | 6232       | NC_018382.1 | Bat hepevirus                    |
-| NC_018382.1_three_prime_UTR_6691_6796  | 6232       | NC_018382.1 | Bat hepevirus                    |
 | NC_003977.1_gene_1814_2452             | 5980       | NC_003977.1 | Hepatitis B virus                |
 | NC_003977.1_CDS_1814_2452              | 5980       | NC_003977.1 | Hepatitis B virus                |
 | NC_003977.1_gene_2307_4838             | 5327       | NC_003977.1 | Hepatitis B virus                |
@@ -120,8 +108,6 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 - Run Varscan2 on command line using the following command: `samtools mpileup -B -f /Users/ls483/Documents/SRA.GEO/viral.reference/viruses.fa -d 9999 -Q 17 -q 17 SRR1946637_un.bowtie2.sorted.bam| java -Xmx2g -jar /Users/ls483/Documents/software/varscan2/VarScan.v2.3.9.jar mpileup2cns --output-vcf 1 --min-var-freq 0.01 | awk '/^#/ || $7=="PASS"' > /Users/ls483/Documents/SRA.GEO/output_varscan2/SRR1946637_un.vcf`
 - This produces a the variants found in viruses in a standard variant call file (VCF) file format.
 
- *A complete summary of the input, and output files from this step is available via google drive [**here** ](https://drive.google.com/drive/folders/0B3-883ME4sP3d0JOVm9qVDBKcnM?usp=sharing).*
-  
 ## Citation
 Please cite our work in BioxRiv available at this link: http://www.biorxiv.org/content/early/2017/01/11/099788). DOI https://doi.org/10.1101/099788. 
 
