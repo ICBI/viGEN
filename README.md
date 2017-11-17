@@ -55,8 +55,32 @@ Only those viral species with copy number more than a threshold are selected for
 
 - If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
 -	We have provided an Rmarkdown file that has code and output for how to merge all the `Samtools idx` files. See files [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf) created from [**merge.idx.stats.Rmd**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.Rmd) available in this github repository. This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
--	Only those viral species with copy number more than a threshold are selected for the next module. For this tutorial, we decided to use a threshold copy number of 10, so this gives us 19 viral genomes used in the next step. This file is available [**here**](https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing). 
+-	Only those viral species with copy number more than a threshold are selected for the next module. For this tutorial, we decided to use a threshold copy number of 10, so this gives us 19 viral genomes used in the next step. This file is available [**here**] (https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing) and also shown in the table below . 
   	
+| NC id       | Genome Length | Name of virus                    | SRR1946637 (viGEN read count) | Copy number|
+|-------------|---------------|----------------------------------|-------------------------------|--------------------------------------------------------|
+| NC_018464.1 | 927           | Shamonda virus                   | 82509                         | 8900.65                                                |
+| NC_003977.1 | 3215          | Hepatitis B virus                | 96329                         | 2996.24                                                |
+| NC_018476.1 | 6895          | Simbu virus                      | 49784                         | 722.03                                                 |
+| NC_009823.1 | 9711          | Hepatitis C virus genotype 2     | 31470                         | 324.07                                                 |
+| NC_018478.1 | 4417          | Simbu virus                      | 13745                         | 311.18                                                 |
+| NC_018711.1 | 7195          | Lunk virus NKS-1                 | 14251                         | 198.07                                                 |
+| NC_004102.1 | 9646          | Hepatitis C virus                | 17922                         | 185.8                                                  |
+| NC_001672.1 | 11141         | Tick-borne encephalitis virus    | 16336                         | 146.63                                                 |
+| NC_015521.1 | 7310          | Cutthroat trout virus            | 10122                         | 138.47                                                 |
+| NC_022518.1 | 9472          | Human endogenous retrovirus K113 | 9028                          | 95.31                                                  |
+| NC_018382.1 | 6796          | Bat hepevirus                    | 6232                          | 91.7                                                   |
+| NC_009827.1 | 9628          | Hepatitis C virus genotype 6     | 8438                          | 87.64                                                  |
+| NC_009225.1 | 3245          | Torque teno midi virus 1         | 1581                          | 48.72                                                  |
+| NC_014093.1 | 3253          | Torque teno midi virus 2         | 1111                          | 34.15                                                  |
+| NC_027202.1 | 1904          | Punta Toro virus                 | 580                           | 30.46                                                  |
+| NC_001526.2 | 7905          | Human papillomavirus type 16     | 1976                          | 25                                                     |
+| NC_002645.1 | 27317         | Human coronavirus 229E           | 5080                          | 18.6                                                   |
+| NC_009824.1 | 9456          | Hepatitis C virus genotype 3     | 1476                          | 15.61                                                  |
+| NC_010708.1 | 3621          | Thottapalayam virus              | 416                           | 11.49                                                  |
+
+
+    
 ### Gene and CDS quantification
 -	In this step, we use our in-house pipeline to generate gene and CDS counts is for every input BAM file.
 -	The region level information is extracted from Gene Feature Format files (GFF) files which are available for most viral genomes from NCBI.
@@ -70,39 +94,7 @@ Only those viral species with copy number more than a threshold are selected for
      
     -	Application: These gene and CDS count files can be used to compare case and control groups of interest using popular tools like EdgeR (http://bioconductor.org/packages/edgeR/) or DESeq2 in Bioconductor that can accept raw counts. 
     
-  The viruses that have the highest region counts are shown in table below. You can see various gene/CDS regions of Hepatitis B virus showing up on top with highest counts. This is a verification of the HBV status of the sample
-  
-  
-| Region Name                            | SRR1946637 Region level Read Count | ncId        | annot.name                       |
-|----------------------------------------|------------|-------------|----------------------------------|
-| NC_003977.1_region_1_3215              | 96329      | NC_003977.1 | Hepatitis B virus                |
-| NC_018464.1_region_1_927               | 82509      | NC_018464.1 | Shamonda virus                   |
-| NC_018476.1_region_1_6895              | 49784      | NC_018476.1 | Simbu virus                      |
-| NC_003977.1_gene_1374_1838             | 43011      | NC_003977.1 | Hepatitis B virus                |
-| NC_003977.1_CDS_1374_1838              | 43011      | NC_003977.1 | Hepatitis B virus                |
-| NC_009823.1_region_1_9711              | 31470      | NC_009823.1 | Hepatitis C virus genotype 2     |
-| NC_003977.1_CDS_155_835                | 21591      | NC_003977.1 | Hepatitis B virus                |
-| NC_004102.1_region_1_9646              | 17922      | NC_004102.1 | Hepatitis C virus                |
-| NC_004102.1_three_prime_UTR_9378_9646  | 17922      | NC_004102.1 | Hepatitis C virus                |
-| NC_001672.1_region_1_11141             | 16336      | NC_001672.1 | Tick-borne encephalitis virus    |
-| NC_018711.1_region_1_7195              | 14251      | NC_018711.1 | Lunk virus NKS-1                 |
-| NC_018478.1_region_1_4417              | 13745      | NC_018478.1 | Simbu virus                      |
-| NC_015521.1_region_1_7310              | 10122      | NC_015521.1 | Cutthroat trout virus            |
-| NC_015521.1_three_prime_UTR_7191_7310  | 10122      | NC_015521.1 | Cutthroat trout virus            |
-| NC_022518.1_region_1_9472              | 9028       | NC_022518.1 | Human endogenous retrovirus K113 |
-| NC_009827.1_region_1_9628              | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
-| NC_009827.1_three_prime_UTR_9400_9628  | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
-| NC_009827.1_region_9433_9495           | 8438       | NC_009827.1 | Hepatitis C virus genotype 6     |
-| NC_003977.1_gene_1814_2452             | 5980       | NC_003977.1 | Hepatitis B virus                |
-| NC_003977.1_CDS_1814_2452              | 5980       | NC_003977.1 | Hepatitis B virus                |
-| NC_003977.1_gene_2307_4838             | 5327       | NC_003977.1 | Hepatitis B virus                |
-| NC_003977.1_CDS_2307_4838              | 5327       | NC_003977.1 | Hepatitis B virus                |
-| NC_002645.1_region_1_27317             | 5080       | NC_002645.1 | Human coronavirus 229E           |
-| NC_003977.1_CDS_1901_2452              | 4776       | NC_003977.1 | Hepatitis B virus                |
-| NC_022518.1_long_terminal_repeat_1_968 | 4558       | NC_022518.1 | Human endogenous retrovirus K113 |
-| NC_003977.1_gene_2848_4050             | 3876       | NC_003977.1 | Hepatitis B virus                |
-| NC_003977.1_CDS_2848_4050              | 3876       | NC_003977.1 | Hepatitis B virus                |
-
+  The viruses that have the highest region counts are shown in table [**here**](https://docs.google.com/spreadsheets/d/1MkXZjz1zv5Jb55hXPqeNmVNaSBZTti3To812bd984jk/edit#gid=0). You can see various gene/CDS regions of Hepatitis B virus showing up on top with highest counts. This is a verification of the HBV status of the sample. 
     
 ### Variant calling
 - Install Varscan2 from here: https://sourceforge.net/projects/varscan/files/ 
