@@ -73,7 +73,7 @@ Only those viral species with copy number more than a threshold are selected for
   The viruses that have the highest region counts are shown in table below. You can see various gene/CDS regions of Hepatitis B virus showing up on top with highest counts. This is a verification of the HBV status of the sample
   
   
-| Region Name                            | SRR1946637 Read Count | ncId        | annot.name                       |
+| Region Name                            | SRR1946637 Region level Read Count | ncId        | annot.name                       |
 |----------------------------------------|------------|-------------|----------------------------------|
 | NC_003977.1_region_1_3215              | 96329      | NC_003977.1 | Hepatitis B virus                |
 | NC_018464.1_region_1_927               | 82509      | NC_018464.1 | Shamonda virus                   |
