@@ -56,7 +56,7 @@ Only those viral species with copy number more than a threshold are selected for
 ### Get genome level matrix file and find top viruses
 
 - If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
--	We have provided an Rmarkdown file that has code and output for how to merge all the `Samtools idx` files. See files [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf) created from [**merge.idx.stats.Rmd**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.Rmd) available in this github repository. This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
+-	We have provided a fully reproducible code in the R programming language in the form of an R markdown file. It contains the code and output for how to merge all the `Samtools idxstats` files. A readable version of this file is here [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf). This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
 -	Only those viral species with copy number more than a threshold are selected for the next module. For this tutorial, we decided to use a threshold copy number of 10, so this gives us 19 viral genomes used in the next step. This file is available [**here**] (https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing) and also shown in the table below . 
   	
 | NC id       | Genome Length | Name of virus                    | SRR1946637 (viGEN read count) | Copy number|
@@ -89,7 +89,8 @@ Only those viral species with copy number more than a threshold are selected for
 -	Download GFF files for the top viruses. 
   -	For this tutorial, we have provided the GFF files here [**un_bowtie_topGff**](https://drive.google.com/drive/folders/0B3-883ME4sP3RXp4eDlTZl9wZkE?usp=sharing). Not all viruses have GFF files. In our example 18 of the 19 viruses had GFF files for download.
   -	Input to our in-house pipeline for Gene & CDS quantification: the viral bam files (the BAM file output from previous Bowtie2 step)
-  -	We have provided R markdown file [**count.regions.in.regions.Rmd**](https://github.com/ICBI/viGEN/blob/master/count.reads.in.regions.Rmd) in this github repository, that generates these Gene and CDS counts. *We plan to integrate this code into our Bioconductor package.*
+  -	We have provided fully reproducible code in the R programming language in the form of an R markdown file [**count.regions.in.regions.Rmd**](https://github.com/ICBI/viGEN/blob/master/count.reads.in.regions.Rmd) in this github repository, that generates these Gene and CDS counts. A readable version of this file is also provided here: https://github.com/ICBI/viGEN/blob/master/count.reads.in.regions.pdf
+  *We plan to integrate this code into our Bioconductor package.*
   -	Output : 
     -	This code produces counts for each region in the GFF file. One file is created for each virus (GFF file) for each sample. Three types of counts are calculated - “in region”, “on boundary” and “in gaps”. This output is available as a “.csv” file and “Rdata” files.
     -	Collate all read counts across all samples and across all top viruses to create a matrix. This code is provided as [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). It calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
