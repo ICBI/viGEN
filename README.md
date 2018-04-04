@@ -93,7 +93,7 @@ Only those viral species with copy number more than a threshold are selected for
   *We plan to integrate this code into our Bioconductor package.*
   -	Output : 
     -	This code produces counts for each region in the GFF file. One file is created for each virus (GFF file) for each sample. Three types of counts are calculated - “in region”, “on boundary” and “in gaps”. This output is available as a “.csv” file and “Rdata” files.
-    -	Collate all read counts across all samples and across all top viruses to create a matrix. This code is provided as [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). It calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
+    -	Collate all read counts across all samples and across all top viruses to create a matrix. This code is provided as a fully reproducible code in the R programming language in the form of an R markdown file [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). A readable version of this file is also provided here: https://github.com/ICBI/viGEN/blob/master/collate.output.files.pdf. The code calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
      
     -	Application: These gene and CDS count files can be used to compare case and control groups of interest using popular tools like EdgeR (http://bioconductor.org/packages/edgeR/) or DESeq2 in Bioconductor that can accept raw counts. 
     
