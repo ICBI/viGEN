@@ -107,3 +107,7 @@ Please cite our work in BioxRiv available at this link: http://www.biorxiv.org/c
 If you are using these samples for testing this pipeline, please remember to cite this dataset from NCBI
 * NCBI SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878
 * EBI SRA http://www.ebi.ac.uk/ena/data/view/SRR1946637
+
+## Notes
+Rmd files are R Markdown documents that contain narrative text and code in a nicely formatted document, that allow users to completely reproduce the code. Along with the R Markdown files, its PDF version have also been provided for users. The R Markdown files and PDF files have the same name and differ only by the file extension (.Rmd for R Markdown and .pdf for PDF files).
+
