@@ -42,11 +42,13 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 ### Align the unmapped fastq files to the viral reference
 - 	In this tutorial, we use alignment tool Bowtie2.
 -	Install Bowtie2 pre-compiled binary file based on instructions in this manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#obtaining-bowtie-2 
--	Perform alignment to generate output in the form of a SAM file. This SAM file contains the reads from various viruses aligned to the viral reference.
--	Convert SAM to BAM using Samtools
--	Sort the BAM file coordinate wise
--	Use `Samtools idx` tool. This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. Using the genome level counts, we estimated the number of reads that covered the genome, a form of viral load or viral copy number. Viral copy number was defined as:
+-	Perform alignment to generate output in the form of a [SAM](https://samtools.github.io/hts-specs/SAMv1.pdf) file. This SAM file contains the reads from various viruses aligned to the viral reference.
+-	Convert SAM to BAM using [Samtools](http://samtools.sourceforge.net/). Example command: ```samtools view -bS in.sam > out.bam```
+-	Sort the BAM file coordinate wise. Example command: ```samtools sort out.bam > out.sorted```
+-	Use `Samtools idxstats` tool. Example command: ```samtools idxstats out.sorted.bam > idxstats.txt```.
+This produces a tab delimited file, with each line consisting of a virus sequence name, sequence length, # mapped reads and # unmapped reads. The number of mapped reads is referred to as *genome level counts*. Using the genome level counts, we estimated the number of reads that covered the genome, a form of viral load or viral copy number. Viral copy number was defined as:
 ```the Number of mapped reads * Read Length / Genome Length```
+
 Only those viral species with copy number more than a threshold are selected for the next module.
 
   We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/open?id=0B3-883ME4sP3RGI3SF9ha0p4QVk) that encompasses all of these above steps. 
