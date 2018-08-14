@@ -105,7 +105,10 @@ Only those viral species with copy number more than a threshold are selected for
 - This produces a the variants found in viruses in a standard variant call file (VCF) file format.
 
 ## Citation
-Please cite our work in BioxRiv available at this link: http://www.biorxiv.org/content/early/2017/01/11/099788). DOI https://doi.org/10.1101/099788. 
+Please cite our work
+* Krithika Bhuvaneshwar, Lei Song, Subha Madhavan, and Yuriy Gusev. 'viGEN: An Open Source Pipeline for the Detection and Quantification of Viral RNA in Human Tumors', Frontiers in Microbiology (2018). https://www.ncbi.nlm.nih.gov/pubmed/29922260
+
+BioxRiv available at this link: http://www.biorxiv.org/content/early/2017/01/11/099788). DOI https://doi.org/10.1101/099788. 
 
 If you are using these samples for testing this pipeline, please remember to cite this dataset from NCBI
 * NCBI SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878
