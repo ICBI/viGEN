@@ -56,7 +56,7 @@ Only those viral species with copy number more than a threshold are selected for
 ### Get genome level matrix file and find top viruses
 
 - If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
--	We have provided a fully reproducible code in the R programming language in the form of an R markdown file. It contains the code and output for how to merge all the `Samtools idxstats` files. A readable version of this file is here [**merge.idx.stats.pdf**](https://github.com/ICBI/viGEN/blob/master/merge.idx.stats.pdf). This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
+-	We have provided a fully reproducible code in the R programming language in the form of an R markdown file. It contains the code and output for how to merge all the `Samtools idxstats` files. A readable version of this file is here [**merge.idx.stats.pdf**](https://drive.google.com/open?id=0B3-883ME4sP3U0VYUFZUdDdsZkU). This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
 -	Only those viral species with copy number more than a threshold are selected for the next module. For this tutorial, we decided to use a threshold copy number of 10, so this gives us 19 viral genomes used in the next step. This file is available [**here**] (https://docs.google.com/spreadsheets/d/16vSWxLeUdiTXBNzudObbEGFNbXZroWznDnEtjhNF784/edit?usp=sharing) and also shown in the table below . 
   	
 | NC id       | Genome Length | Name of virus                    | SRR1946637 (viGEN read count) | Copy number|
