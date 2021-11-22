@@ -11,7 +11,7 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 
 ## Workflow steps in detail
 
-*A complete summary of the input, and output files from each step in this workflow is available via google drive [**here** ](https://drive.google.com/drive/folders/0B3-883ME4sP3Q3V4RVloa2tSTkE).*
+*A complete summary of the input, and output files from each step in this workflow is available via google drive [**here** ](https://drive.google.com/drive/folders/0B3-883ME4sP3Q3V4RVloa2tSTkE?resourcekey=0-1u6ysvjYt62l2OVJgeX_Zg&usp=sharing).*
 
 ### Alignment to human reference
 - In this tutorial, we use tool RSEM for alignment
