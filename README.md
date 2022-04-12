@@ -29,8 +29,8 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 
    Output files: In addition to the aligned BAM file (genome level and transcriptome level), this will generate the unaligned (unmapped) fastq files named **SRR1946637_un_1.fq** and **SRR1946637_un_2.fq**. They consist of the reads that did not align to the human reference. 
    
-  This workflow is part of “Module 1 (filtered human input files)” in Figure 1 in the viGEN manuscript (currently under preparation).
-  
+  This workflow is part of “Module 1 (filtered human input files)” in Figure 1 in the viGEN manuscript .
+    
 ### Create viral reference
 - We were interested in exploring all viruses existing in humans. So we first obtained reference genomes of all known and sequenced human viruses obtained from NCBI (as of Sep 2015), and merged them into one file (referred to as the "viral reference file") in fasta file format. Merge all virus fasta file into one big fasta file called `viruses.fa` . For this tutorial, we have provided this file through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
 - We have also indexed the viral reference file, so that these files are ready for alignment tools Bowtie2 (folder name: `virus.bowtie2.refB`) or BWA (folder name: `viral.bwa.ref`) through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
@@ -115,5 +115,7 @@ If you are using these samples for testing this pipeline, please remember to cit
 * EBI SRA http://www.ebi.ac.uk/ena/data/view/SRR1946637
 
 ## Notes
-Rmd files are R Markdown documents that contain narrative text and code in a nicely formatted document, that allow users to completely reproduce the code. Along with the R Markdown files, its PDF version have also been provided for users. The R Markdown files and PDF files have the same name and differ only by the file extension (.Rmd for R Markdown and .pdf for PDF files).
 
+To reduce run time in this workflow, users can alternatively try other alignment tools including Kallisto, Bowtie2 etc instrea of RSEM. I have found Kallisto to be the fastest in this workflow, and the output to be very similar to RSEM used in this example. Users must ensure to use the appropriate reference index files . And remember to output the unmapped sequences into another file.
+
+Rmd files are R Markdown documents that contain narrative text and code in a nicely formatted document, that allow users to completely reproduce the code. Along with the R Markdown files, its PDF version have also been provided for users. The R Markdown files and PDF files have the same name and differ only by the file extension (.Rmd for R Markdown and .pdf for PDF files).
