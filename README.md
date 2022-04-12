@@ -116,6 +116,6 @@ If you are using these samples for testing this pipeline, please remember to cit
 
 ## Notes
 
-To reduce run time in this workflow, users can alternatively try other alignment tools including Kallisto, Bowtie2 etc instrea of RSEM. I have found Kallisto to be the fastest in this workflow, and the output to be very similar to RSEM used in this example. Users must ensure to use the appropriate reference index files . And remember to output the unmapped sequences into another file.
+* To reduce run time in this workflow, users can alternatively try other alignment tools including Kallisto, Bowtie2 etc instrea of RSEM. I have found Kallisto to be the fastest in this workflow, and the output to be very similar to RSEM used in this example. Users must ensure to use the appropriate reference index files . And remember to output the unmapped sequences into another file.
 
-Rmd files are R Markdown documents that contain narrative text and code in a nicely formatted document, that allow users to completely reproduce the code. Along with the R Markdown files, its PDF version have also been provided for users. The R Markdown files and PDF files have the same name and differ only by the file extension (.Rmd for R Markdown and .pdf for PDF files).
+* Rmd files are R Markdown documents that contain narrative text and code in a nicely formatted document, that allow users to completely reproduce the code. Along with the R Markdown files, its PDF version have also been provided for users. The R Markdown files and PDF files have the same name and differ only by the file extension (.Rmd for R Markdown and .pdf for PDF files).
