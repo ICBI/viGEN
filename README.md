@@ -35,11 +35,11 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 - We were interested in exploring all viruses existing in humans. So we first obtained reference genomes of all known and sequenced human viruses obtained from NCBI (as of Sep 2015), and merged them into one file (referred to as the "viral reference file") in fasta file format. Merge all virus fasta file into one big fasta file called `viruses.fa` . For this tutorial, we have provided this file through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
 - We have also indexed the viral reference file, so that these files are ready for alignment tools Bowtie2 (folder name: `virus.bowtie2.refB`) or BWA (folder name: `viral.bwa.ref`) through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
   
-  In case user is interested in creating a reference index the reference file on their own, this is the command to use: `./bowtie2-build /Path/viruses.fa virus.bowtie2.refB`. 
-  
 - NCBI also allows to download information/annotation about these viruses from their web site. This information has been provided as [**Complete_Sequence_info.csv**](https://docs.google.com/spreadsheets/d/1qN_ZcPDPZnJZXDdutjpTlUt8QY9K4VCQvmHdnHZU_j8/edit?usp=sharing).
 
 - This pipeline can be extended to detect and quantify other microbes in RNA as long as the microbial sequence is referenced in NCBI. The user has to download the correspdoing `FASTA` sequence files of the microbes of interest from NCBI and concatenate them together to create a single reference `FASTA` file.  
+
+In case user is interested in creating a reference index the reference file on their own, this is the command to use: `./bowtie2-build /Path/viruses.fa virus.bowtie2.refB`. 
 
 ### Align the unmapped fastq files to the viral reference
 - 	In this tutorial, we use alignment tool Bowtie2.
