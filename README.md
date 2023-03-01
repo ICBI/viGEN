@@ -53,7 +53,8 @@ This produces a tab delimited file, with each line consisting of a virus sequenc
 
 Only those viral species with copy number more than a threshold are selected for the next module.
 
-  We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/open?id=0B3-883ME4sP3RGI3SF9ha0p4QVk) that encompasses all of these above steps. 
+### SHELL SCRIPT
+We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/open?id=0B3-883ME4sP3RGI3SF9ha0p4QVk) that encompasses all of these above steps. 
 
 ### Get genome level matrix file and find top viruses
 
