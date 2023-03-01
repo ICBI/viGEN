@@ -1,5 +1,5 @@
 # viGEN tutorial
-viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS data. In this tutorial, we provide and end to end workflow on how this pipeline can be used on an example data file.
+viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS data. This pipeline can be extended to detect and quantify other microbesin RNA. In this tutorial, we provide and end to end workflow on how this pipeline can be used on an example data file to detect and quantify viruses.
 
 ## Steps in general
 ![Image](https://github.com/ICBI/viGEN/blob/master/workflow.png)
@@ -35,9 +35,11 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 - We were interested in exploring all viruses existing in humans. So we first obtained reference genomes of all known and sequenced human viruses obtained from NCBI (as of Sep 2015), and merged them into one file (referred to as the "viral reference file") in fasta file format. Merge all virus fasta file into one big fasta file called `viruses.fa` . For this tutorial, we have provided this file through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
 - We have also indexed the viral reference file, so that these files are ready for alignment tools Bowtie2 (folder name: `virus.bowtie2.refB`) or BWA (folder name: `viral.bwa.ref`) through google drive [**here**](https://drive.google.com/drive/folders/0B3-883ME4sP3Wm1FVjdVcEpfek0?usp=sharing).
   
-  In case user is interested in creating a reference index the reference file on their own, this is the command to use: `./bowtie2-build /Path/viruses.fa virus.bowtie2.refB`
+  In case user is interested in creating a reference index the reference file on their own, this is the command to use: `./bowtie2-build /Path/viruses.fa virus.bowtie2.refB`. 
   
 - NCBI also allows to download information/annotation about these viruses from their web site. This information has been provided as [**Complete_Sequence_info.csv**](https://docs.google.com/spreadsheets/d/1qN_ZcPDPZnJZXDdutjpTlUt8QY9K4VCQvmHdnHZU_j8/edit?usp=sharing).
+
+- This pipeline can be extended to detect and quantify other microbes in RNA as long as the microbial sequence is referenced in NCBI. The user has to download the correspdoing `FASTA` sequence files of the microbes of interest from NCBI and concatenate them together to create a single reference `FASTA` file.  
 
 ### Align the unmapped fastq files to the viral reference
 - 	In this tutorial, we use alignment tool Bowtie2.
@@ -108,7 +110,8 @@ Only those viral species with copy number more than a threshold are selected for
 Please cite our work
 * Krithika Bhuvaneshwar, Lei Song, Subha Madhavan, and Yuriy Gusev. 'viGEN: An Open Source Pipeline for the Detection and Quantification of Viral RNA in Human Tumors', Frontiers in Microbiology (2018). https://www.ncbi.nlm.nih.gov/pubmed/29922260
 
-BioxRiv available at this link: http://www.biorxiv.org/content/early/2017/01/11/099788). DOI https://doi.org/10.1101/099788. 
+* This review paper has a nice comparison of our pipeline with 7 other well known pipelines (VirusFinder, VirusSeq, DAMIAN, VirTect, virDetect, MetaMap, Kraken) and shows that our pipeline performace was one of the best to detect known viruses in NCBI
+https://pubmed.ncbi.nlm.nih.gov/35753694/
 
 If you are using these samples for testing this pipeline, please remember to cite this dataset from NCBI
 * NCBI SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878
@@ -116,6 +119,6 @@ If you are using these samples for testing this pipeline, please remember to cit
 
 ## Notes
 
-* To reduce run time in this workflow, users can alternatively try other alignment tools including Kallisto, Bowtie2 etc instrea of RSEM. I have found Kallisto to be the fastest in this workflow, and the output to be very similar to RSEM used in this example. Users must ensure to use the appropriate reference index files . And remember to output the unmapped sequences into another file.
+* To reduce run time in this workflow, users can alternatively try other alignment tools including Kallisto, Bowtie2 etc instred of RSEM. I have found Kallisto to be the fastest in this workflow, and the output to be very similar to RSEM used in this example. Users must ensure to use the appropriate reference index files . And remember to output the unmapped sequences into a separate file.
 
 * Rmd files are R Markdown documents that contain narrative text and code in a nicely formatted document, that allow users to completely reproduce the code. Along with the R Markdown files, its PDF version have also been provided for users. The R Markdown files and PDF files have the same name and differ only by the file extension (.Rmd for R Markdown and .pdf for PDF files).
