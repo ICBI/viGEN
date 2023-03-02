@@ -112,7 +112,7 @@ We have provided this shell script [**viral.pipeline_public_final.sh**](https://
 - Some of the links to google drive folders may be changed by google. Please use this link to access all code, and output files to reproduce this example : https://drive.google.com/drive/folders/0B3-883ME4sP3Q3V4RVloa2tSTkE?resourcekey=0-1u6ysvjYt62l2OVJgeX_Zg&usp=sharing
 - Due to google drive space restrictions, I am unable to host the input files anymore. Please download the file from here:
 https://www.ebi.ac.uk/ena/browser/view/SRR1946637
-- Please email me at kb472 _a_t_ georgetown.edu
+- Please email me at kb472 _a_t_ georgetown.edu if you have any questions
 
 ## Citation
 Please cite our work
