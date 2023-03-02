@@ -4,6 +4,12 @@ viGEN is a bioinformatics pipeline for the exploration of viral RNA in human NGS
 ## Steps in general
 ![Image](https://github.com/ICBI/viGEN/blob/master/vigen_github.png)
 
+## ACCESS to all code, intput and output files to reproduce this example
+- Some of the links to google drive folders may be changed by google. Please use this link to access all code, and output files to reproduce this example : https://drive.google.com/drive/folders/0B3-883ME4sP3Q3V4RVloa2tSTkE?resourcekey=0-1u6ysvjYt62l2OVJgeX_Zg&usp=sharing
+- Due to google drive space restrictions, I am unable to host the input files anymore. Please download the file from here:
+https://www.ebi.ac.uk/ena/browser/view/SRR1946637
+- Please email me at kb472 _a_t_ georgetown.edu if you have any questions
+
 ## About the data
 
 *	For this tutorial, we used a sample RNA-seq file from liver cancer from public study SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878 or GEO http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65485 (also available at EBI SRA here: http://www.ebi.ac.uk/ena/data/view/SRR1946637). 
@@ -113,17 +119,12 @@ The VIGEN pipeline is very customizable.
 - This pipeline can be extended to detect and quantify other microbes in RNA-seq as long as the sequence is known and available as a FASTA file.
   - Download the FASTA files of interest from NCBI , and concaterate them to create the reference FASTA file for this pipeline.
   - Build the reference index file
-  - Create the annotation file 
+  - Create the annotation file (similar to the example CSV file provided in this tutorial)
+  - The pipeline has been used to detect bacteria from RNA-seq data and has worked well.
 - Although not tested, this pipeline could be extended to detect and quantify microbes in DNA-seq.  
   - Can use BWA or Bowtie2 for alignment of DNA-seq data. And remember to output the unmapped sequences into a separate file.
   - The quantification step can only be done at the genome level, NOT at the transcriptome level.
-  - The variant calling step will work.
-
-## ACCESS to all code, intput and output files to reproduce this example
-- Some of the links to google drive folders may be changed by google. Please use this link to access all code, and output files to reproduce this example : https://drive.google.com/drive/folders/0B3-883ME4sP3Q3V4RVloa2tSTkE?resourcekey=0-1u6ysvjYt62l2OVJgeX_Zg&usp=sharing
-- Due to google drive space restrictions, I am unable to host the input files anymore. Please download the file from here:
-https://www.ebi.ac.uk/ena/browser/view/SRR1946637
-- Please email me at kb472 _a_t_ georgetown.edu if you have any questions
+  - The variant calling step should also work
 
 ## Citation
 Please cite our work
@@ -131,6 +132,8 @@ Please cite our work
 
 * This review paper has a nice comparison of our pipeline with 7 other well known pipelines (VirusFinder, VirusSeq, DAMIAN, VirTect, virDetect, MetaMap, Kraken) and shows that our pipeline performace was one of the best to detect known viruses in NCBI
 https://pubmed.ncbi.nlm.nih.gov/35753694/
+
+* Application of this pipeline on two types of coronaviruses (Pre-print) : https://doi.org/10.1101/2021.05.28.446250
 
 If you are using these samples for testing this pipeline, please remember to cite this dataset from NCBI or EBI
 * NCBI SRA http://www.ncbi.nlm.nih.gov/bioproject/PRJNA279878
