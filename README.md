@@ -108,6 +108,12 @@ We have provided this shell script [**viral.pipeline_public_final.sh**](https://
 - Run Varscan2 on command line using the following command: `samtools mpileup -B -f /Users/ls483/Documents/SRA.GEO/viral.reference/viruses.fa -d 9999 -Q 17 -q 17 SRR1946637_un.bowtie2.sorted.bam| java -Xmx2g -jar /Users/ls483/Documents/software/varscan2/VarScan.v2.3.9.jar mpileup2cns --output-vcf 1 --min-var-freq 0.01 | awk '/^#/ || $7=="PASS"' > /Users/ls483/Documents/SRA.GEO/output_varscan2/SRR1946637_un.vcf`
 - This produces a the variants found in viruses in a standard variant call file (VCF) file format.
 
+## ACCESS to all code, intput and output files to reproduce this example
+- Some of the links to google drive folders may be changed by google. Please use this link to access all code, and output files to reproduce this example : https://drive.google.com/drive/folders/0B3-883ME4sP3Q3V4RVloa2tSTkE?resourcekey=0-1u6ysvjYt62l2OVJgeX_Zg&usp=sharing
+- Due to google drive space restrictions, I am unable to host the input files anymore. Please download the file from here:
+https://www.ebi.ac.uk/ena/browser/view/SRR1946637
+- Please email me at kb472 _a_t_ georgetown.edu
+
 ## Citation
 Please cite our work
 * Krithika Bhuvaneshwar, Lei Song, Subha Madhavan, and Yuriy Gusev. 'viGEN: An Open Source Pipeline for the Detection and Quantification of Viral RNA in Human Tumors', Frontiers in Microbiology (2018). https://www.ncbi.nlm.nih.gov/pubmed/29922260
