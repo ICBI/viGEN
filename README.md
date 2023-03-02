@@ -56,7 +56,7 @@ Only those viral species with copy number more than a threshold are selected for
 ### SHELL SCRIPT
 We have provided this shell script [**viral.pipeline_public_final.sh**](https://drive.google.com/open?id=0B3-883ME4sP3RGI3SF9ha0p4QVk) that encompasses all of these above steps. 
 
-### Get genome level matrix file and find top viruses
+### Get genome level matrix file and find top viruses - R code provided
 
 - If you have more than one sample, then it might be useful to concatenate the number of mapped reads (genome level counts) from each sample into a matrix format. This file can then be used for any further analysis.
 -	We have provided a fully reproducible code in the R programming language in the form of an R markdown file. It contains the code and output for how to merge all the `Samtools idxstats` files. A readable version of this file is here [**merge.idx.stats.pdf**](https://drive.google.com/open?id=0B3-883ME4sP3U0VYUFZUdDdsZkU). This code also adds virus annotation using information from **Complete_Sequence_info.csv** file.
@@ -86,7 +86,7 @@ We have provided this shell script [**viral.pipeline_public_final.sh**](https://
 
 
     
-### Gene and CDS quantification
+### Gene and CDS quantification - description and R code
 -	In this step, we use our in-house pipeline to generate gene and CDS counts is for every input BAM file.
 -	The region level information is extracted from Gene Feature Format files (GFF) files which are available for most viral genomes from NCBI.
 -	Download GFF files for the top viruses. 
@@ -96,13 +96,14 @@ We have provided this shell script [**viral.pipeline_public_final.sh**](https://
   *We plan to integrate this code into our Bioconductor package.*
   -	Output : 
     -	This code produces counts for each region in the GFF file. One file is created for each virus (GFF file) for each sample. Three types of counts are calculated - “in region”, “on boundary” and “in gaps”. This output is available as a “.csv” file and “Rdata” files.
-    -	Collate all read counts across all samples and across all top viruses to create a matrix. This code is provided as a fully reproducible code in the R programming language in the form of an R markdown file [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). A readable version of this file is also provided here: https://github.com/ICBI/viGEN/blob/master/collate.output.files.pdf. The code calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
+    -	Collate all read counts across all samples and across all top viruses to create a matrix. 
+    This code is provided as a fully reproducible code in the R programming language in the form of an R markdown file [**collate.output.files.Rmd**](https://github.com/ICBI/viGEN/blob/master/collate.output.files.Rmd). A readable version of this file is also provided here: https://github.com/ICBI/viGEN/blob/master/collate.output.files.pdf. The code calculates total of “in region” and “on boundary” (referred to as “sum”) when collating. This code will also add virus annotation using information from “Complete_Sequence_info.csv” file.
      
     -	Application: These gene and CDS count files can be used to compare case and control groups of interest using popular tools like EdgeR (http://bioconductor.org/packages/edgeR/) or DESeq2 in Bioconductor that can accept raw counts. 
     
   The viruses that have the highest region counts are shown in table [**here**](https://docs.google.com/spreadsheets/d/1MkXZjz1zv5Jb55hXPqeNmVNaSBZTti3To812bd984jk/edit#gid=0). You can see various gene/CDS regions of Hepatitis B virus showing up on top with highest counts. This is a verification of the HBV status of the sample. 
     
-### Variant calling
+### Variant calling - description and code
 - Install Varscan2 from here: https://sourceforge.net/projects/varscan/files/ 
 - Run Varscan2 on command line using the following command: `samtools mpileup -B -f /Users/ls483/Documents/SRA.GEO/viral.reference/viruses.fa -d 9999 -Q 17 -q 17 SRR1946637_un.bowtie2.sorted.bam| java -Xmx2g -jar /Users/ls483/Documents/software/varscan2/VarScan.v2.3.9.jar mpileup2cns --output-vcf 1 --min-var-freq 0.01 | awk '/^#/ || $7=="PASS"' > /Users/ls483/Documents/SRA.GEO/output_varscan2/SRR1946637_un.vcf`
 - This produces a the variants found in viruses in a standard variant call file (VCF) file format.
